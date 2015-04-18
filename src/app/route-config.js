@@ -14,7 +14,8 @@ function config ($stateProvider, $urlRouterProvider) {
     .state('clients', {
       url: '/clients',
       templateUrl: 'app/clients/clients.html',
-      controller: 'ClientsController'
+      controller: 'ClientsController',
+      controllerAs: 'clients'
     });
 
   $urlRouterProvider.otherwise('/');

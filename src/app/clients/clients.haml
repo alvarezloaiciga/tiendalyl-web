@@ -1,0 +1,15 @@
+%div{ "ng-include": "'components/navbar/navbar.html'" }
+
+.row
+  %h1 Clientes
+
+  %table.large-12.medium-12.small-12.columns
+    %thead
+      .row.collapse.prefix-radius
+        .small-2.columns
+          %span.prefix Buscar
+        .small-10.columns
+          %input{ "ng-model": "search.name", type: "text", placeholder: "Buscar por nombre" }
+    %tbody
+      %tr{ "ng-repeat": "client in clients.allClients | filter:search" }
+        %td {{client.name}}
