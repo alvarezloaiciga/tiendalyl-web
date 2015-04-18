@@ -1,0 +1,2 @@
+angular
+  .module('tiendalylWeb', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngResource', 'ui.router', 'mm.foundation']);
