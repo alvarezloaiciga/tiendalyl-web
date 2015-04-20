@@ -16,6 +16,12 @@ function config ($stateProvider, $urlRouterProvider) {
       templateUrl: 'app/clients/clients.html',
       controller: 'ClientsController',
       controllerAs: 'clients'
+    })
+    .state('clients.detail', {
+      url: '/:id',
+      templateUrl: 'app/clients/client.html',
+      controller: 'ClientController',
+      controllerAs: 'client'
     });
 
   $urlRouterProvider.otherwise('/');
