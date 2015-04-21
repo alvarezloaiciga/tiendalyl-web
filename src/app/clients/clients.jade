@@ -1,3 +1,18 @@
-div(ng-include="'components/navbar/navbar.html'")
 .row
-  <div ui-view></div>
+  h1 Clientes
+    table.large-12.medium-12.small-12.columns(ng-if="!!clients.allClients.length")
+      .row.collapse.prefix-radius
+        .small-2.columns
+          span.prefix Buscar
+        .small-10.columns
+          input(ng-model="search.name" type="text" placeholder="Buscar por nombre")
+
+      h2(ng-if="!clients.allClients.length")
+        small Cargando clientes...
+
+      tbody
+        tr(ng-repeat="client in filteredClients = (clients.allClients | filter:search)")
+          td
+            a(ui-sref='clients.detail({id: client.id})') {{ client.name }}
+        tr(ng-hide='filteredClients.length')
+          td No se encontraron clientes con ese nombre

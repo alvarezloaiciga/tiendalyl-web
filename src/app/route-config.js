@@ -5,7 +5,6 @@ angular
   .config(config);
 
 function config ($stateProvider, $urlRouterProvider) {
-
   $stateProvider
     .state('home', {
       url: '/',
@@ -15,19 +14,17 @@ function config ($stateProvider, $urlRouterProvider) {
     .state('clients', {
       url: '/clients',
       templateUrl: 'app/clients/clients.html',
-      controller: function($state){
-        $state.go('clients.list');
-      }
-    })
-    .state('clients.list', {
-      url: '/list',
-      templateUrl: 'app/clients/clients.list.html',
       controller: 'ClientsController',
-      controllerAs: 'clients'
+      controllerAs: 'clients',
+      
     })
     .state('clients.detail', {
       url: '/:id',
-      templateUrl: 'app/clients/clients.detail.html'
+      views : {
+        '@': {
+          templateUrl: 'app/clients/clients.detail.html',
+        },
+      }
     });
 
     $urlRouterProvider.otherwise('/');
