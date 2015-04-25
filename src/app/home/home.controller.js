@@ -1,8 +1,11 @@
-'use strict';
+(function() {
+  'use strict';
 
-angular
-  .module('tiendalylWeb')
-  .controller('HomeController', HomeController);
+  angular
+    .module('tiendalylWeb.home')
+    .controller('HomeController', HomeController);
 
-function HomeController() {
-}
+  function HomeController() {
+  }
+
+})();

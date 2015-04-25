@@ -1,22 +1,25 @@
-'use strict';
+(function() {
+  'use strict';
+  
+  angular
+    .module('tiendalylWeb.clients')
+    .controller('ClientsController', ClientsController);
 
-angular
-  .module('tiendalylWeb')
-  .controller('ClientsController', ClientsController);
+  ClientsController.inject = ['clientsservice'];
 
-ClientsController.inject = ['clientsservice'];
+  function ClientsController(clientsservice) {
+    var vm = this;
+    vm.allClients = [];
 
-function ClientsController(clientsservice) {
-  var vm = this;
-  vm.allClients = [];
+    activate();
 
-  activate();
+    function activate() {
+      getClients();
+    }
 
-  function activate() {
-    getClients();
+    function getClients() {
+      vm.allClients = clientsservice.getClients();
+    }
   }
+})();
 
-  function getClients() {
-    vm.allClients = clientsservice.getClients();
-  }
-}

@@ -10,6 +10,7 @@ module.exports = function(options) {
     return gulp.src([
       options.src + '/{app,components}/**/*.js',
       '!' + options.src + '/app/app.module.js',
+      '!' + options.src + '/app/**/*.module.js',
     ])
       .pipe($.jshint())
       .pipe($.jshint.reporter('jshint-stylish'))
