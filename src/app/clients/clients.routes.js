@@ -19,6 +19,8 @@
         views : {
           '@': {
             templateUrl: 'app/clients/clients.detail.html',
+            controller: 'ClientsDetailController',
+            controllerAs: 'clientsDetail'
           },
         }
       });
