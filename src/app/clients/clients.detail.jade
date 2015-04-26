@@ -12,7 +12,7 @@
     table.large-12.columns
       thead
         tr
-          th Total
+          th Compras
           th Abono
           th Saldo
 
@@ -27,29 +27,7 @@
     tabset.large-12.columns
       tab.large-6.columns(heading="Compras")
         .large-3.columns
-          form
-            .row
-              .large-12.columns
-                label Candidad
-                  input(type="number" ng-model="clientsDetail.newPurchase.quantity")
-
-              .large-12.columns
-                label Descripcion
-                  input(type="text" ng-model="clientsDetail.newPurchase.description")
-
-              .large-12.columns
-                label Precio
-                  input(type="number" ng-model="clientsDetail.newPurchase.price")
-
-              .large-12.columns
-                label
-                  b Total: 
-                  {{ clientsDetail.newPurchase.price * clientsDetail.newPurchase.quantity | currency : '₡' : 0  }}
-
-              hr
-
-              .large-12.columns
-                button.button.expand Guardar
+          new-purchase(client="clientsDetail.client")
 
         .large-9.columns
           .row.large-collapse
