@@ -9,7 +9,7 @@
 
   function NewPurchaseController(purchasesservice) {
     var vm = this;
-    vm.newPurchase = purchasesservice.newPurchase();
+    vm.newPurchase = purchasesservice.newPurchase(vm.client);
     vm.savePurchase = savePurchase;
     vm.closeAlert = closeAlert;
     vm.alerts = [];
@@ -28,7 +28,7 @@
       vm.client.total += vm.newPurchase.total;
       vm.client.balance += vm.newPurchase.total;
 
-      vm.newPurchase = purchasesservice.newPurchase();
+      vm.newPurchase = purchasesservice.newPurchase(vm.client);
     }
 
     function saveError() {
@@ -38,4 +38,3 @@
     }
   }
 })();
-

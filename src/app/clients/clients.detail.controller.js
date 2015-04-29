@@ -11,7 +11,6 @@
     var vm = this;
     vm.client = null;
 
-    vm.newPurchase = { quantity: 1, description: '', price: '' };
     vm.newDeposit = { amount: null };
 
     activate();
@@ -22,10 +21,11 @@
 
     function getClient() {
       var clientId = $stateParams.id;
-      vm.client = clientsservice.getClient(clientId);
+      clientsservice.getClient(clientId).then(updateClient);
+    }
+
+    function updateClient(client) {
+      vm.client = client;
     }
   }
-
-
-
 })();

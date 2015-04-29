@@ -5,7 +5,6 @@
     .module('tiendalylWeb.clients')
     .directive('newPurchase', newPurchase);
 
-
   function newPurchase() {
     var directive = {
       restrict: 'E',

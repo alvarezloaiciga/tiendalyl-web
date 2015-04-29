@@ -12,7 +12,7 @@
         templateUrl: 'app/clients/clients.html',
         controller: 'ClientsController',
         controllerAs: 'clients',
-        
+
       })
       .state('clients.detail', {
         url: '/:id',
@@ -26,4 +26,3 @@
       });
   }
 })();
-

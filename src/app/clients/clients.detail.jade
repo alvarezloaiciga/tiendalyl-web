@@ -40,7 +40,7 @@
                   th Precio Unidad
                   th Total
               tbody
-                tr(ng-repeat="purchase in clientsDetail.client.purchases")
+                tr(ng-repeat="purchase in clientsDetail.client.purchases | orderBy : 'created_at' : true ")
                   td {{ purchase.created_at | date : 'd MMM yyyy' }}
                   td {{ purchase.quantity }}
                   td {{ purchase.description }}
@@ -54,7 +54,7 @@
               .large-12.columns
                 label Monto
                   input(type="number" ng-model="clientsDetail.newDeposit.amount")
-              
+
               .large-12.columns
                 button.button.expand Guardar
 

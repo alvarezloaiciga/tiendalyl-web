@@ -1,16 +1,17 @@
 (function() {
   'use strict';
 
-  var baseUrl = 'http://tiendalyl-admin.herokuapp.com/api/v1/';
-
   angular
     .module('tiendalylWeb.clients')
     .factory('purchasesservice', purchasesservice);
 
-  purchasesservice.$inject = ['$resource'];
+  purchasesservice.$inject = ['$resource', 'httpConfig'];
 
-  function purchasesservice($resource) {
-    var Purchase = $resource(baseUrl + 'purchases/:id', null, {});
+  function purchasesservice($resource, httpConfig) {
+    var Purchase = $resource(httpConfig.baseUrl + 'clients/:clientId/purchases/:id', {
+      clientId: '@client_id'
+    });
+
     Purchase.prototype.calcTotal = function() {
       return (this.quantity * this.price) || 0;
     };
@@ -24,8 +25,8 @@
       return purchase.$save();
     }
 
-    function newPurchase() {
-      return new Purchase();
+    function newPurchase(client) {
+      return new Purchase({ client_id: client.id });
     }
   }
 })();

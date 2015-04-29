@@ -1,16 +1,14 @@
 (function() {
   'use strict';
 
-  var baseUrl = 'http://tiendalyl-admin.herokuapp.com/api/v1/';
-
   angular
     .module('tiendalylWeb.clients')
     .factory('clientsservice', clientsservice);
 
-  clientsservice.$inject = ['$resource'];
+  clientsservice.$inject = ['$resource', 'httpConfig'];
 
-  function clientsservice($resource) {
-    var Client = $resource(baseUrl + 'clients/:id', null, {});
+  function clientsservice($resource, httpConfig) {
+    var Client = $resource(httpConfig.baseUrl + 'clients/:id', null, {});
 
     return {
       getClients: getClients,
@@ -22,7 +20,7 @@
     }
 
     function getClient(clientId) {
-      return Client.get({ id: clientId });
+      return Client.get({ id: clientId }).$promise;
     }
   }
 })();
