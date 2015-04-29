@@ -1,0 +1,25 @@
+alert(ng-repeat="alert in newPurchaseController.alerts" type="alert.type" close="newPurchaseController.closeAlert($index)")
+  {{alert.msg}}
+
+form(name="newPurchaseForm")
+  .row
+    .large-12.columns
+      label Candidad
+        input(type="number" ng-model="newPurchaseController.newPurchase.quantity" required)
+
+    .large-12.columns
+      label Descripcion
+        input(type="text" ng-model="newPurchaseController.newPurchase.description" required)
+
+    .large-12.columns
+      label Precio
+        input(type="number" ng-model="newPurchaseController.newPurchase.price" required)
+
+    .large-12.columns
+      label
+        b Total: {{ newPurchaseController.newPurchase.calcTotal() | currency : '₡' : 0  }}
+
+    hr
+
+    .large-12.columns
+      button.button.expand(ng-click="newPurchaseController.savePurchase()" ng-disabled="newPurchaseForm.$invalid") Guardar

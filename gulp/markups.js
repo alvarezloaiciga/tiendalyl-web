@@ -11,8 +11,8 @@ module.exports = function(options) {
       path.extname = '.html';
     }
 
-    return gulp.src(options.src + '/{app,components}/**/*.haml')
-      .pipe($.consolidate('haml')).on('error', options.errorHandler('Haml'))
+    return gulp.src(options.src + '/{app,components}/**/*.jade')
+      .pipe($.consolidate('jade', { basedir: options.src, doctype: 'html', pretty: '  ' })).on('error', options.errorHandler('Jade'))
       .pipe($.rename(renameToHtml))
       .pipe(gulp.dest(options.tmp + '/serve/'))
       .pipe(browserSync.reload({ stream: true }));

@@ -31,7 +31,7 @@ module.exports = function(options) {
       }
     });
 
-    gulp.watch(options.src + '/{app,components}/**/*.haml', ['markups']);
+    gulp.watch(options.src + '/{app,components}/**/*.jade', ['markups']);
 
     gulp.watch(options.src + '/{app,components}/**/*.html', function(event) {
       browserSync.reload(event.path);

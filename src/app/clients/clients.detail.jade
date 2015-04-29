@@ -1,0 +1,71 @@
+.row(ng-if="!clientsDetail.client")
+  h2
+    small Cargando cliente...
+
+.content(ng-if="clientsDetail.client")
+  .row
+    .large-12
+      h1
+        small {{ clientsDetail.client.name }}
+
+  .row.large-collapse
+    table.large-12.columns
+      thead
+        tr
+          th Compras
+          th Abono
+          th Saldo
+
+      tbody
+        tr
+          td {{ clientsDetail.client.total | currency : '₡' : 0 }}
+          td {{ clientsDetail.client.deposits_total | currency : '₡' : 0 }}
+          td {{ clientsDetail.client.balance | currency : '₡' : 0 }}
+
+
+  .row.large-collapse
+    tabset.large-12.columns
+      tab.large-6.columns(heading="Compras")
+        .large-3.columns
+          new-purchase(client="clientsDetail.client")
+
+        .large-9.columns
+          .row.large-collapse
+            table.large-12.columns
+              thead
+                tr
+                  th Fecha
+                  th Cantidad
+                  th Descripcion
+                  th Precio Unidad
+                  th Total
+              tbody
+                tr(ng-repeat="purchase in clientsDetail.client.purchases | orderBy : 'created_at' : true ")
+                  td {{ purchase.created_at | date : 'd MMM yyyy' }}
+                  td {{ purchase.quantity }}
+                  td {{ purchase.description }}
+                  td {{ purchase.price | currency : '₡' : 0 }}
+                  td {{ purchase.total | currency : '₡' : 0 }}
+
+      tab.large-6.columns(heading="Depositos")
+        .large-3.columns
+          form
+            .row
+              .large-12.columns
+                label Monto
+                  input(type="number" ng-model="clientsDetail.newDeposit.amount")
+
+              .large-12.columns
+                button.button.expand Guardar
+
+        .large-9.columns
+          .row.large-collapse
+            table.large-12.columns
+              thead
+                tr
+                  th Fecha
+                  th Monto
+              tbody
+                tr(ng-repeat="deposit in clientsDetail.client.deposits")
+                  td {{ deposit.created_at | date : 'd MMM yyyy' }}
+                  td {{ deposit.amount | currency : '₡' : 0 }}
