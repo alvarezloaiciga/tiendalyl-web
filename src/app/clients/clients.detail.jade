@@ -49,14 +49,7 @@
 
       tab.large-6.columns(heading="Depositos")
         .large-3.columns
-          form
-            .row
-              .large-12.columns
-                label Monto
-                  input(type="number" ng-model="clientsDetail.newDeposit.amount")
-
-              .large-12.columns
-                button.button.expand Guardar
+          new-deposit(client="clientsDetail.client")
 
         .large-9.columns
           .row.large-collapse
@@ -66,6 +59,6 @@
                   th Fecha
                   th Monto
               tbody
-                tr(ng-repeat="deposit in clientsDetail.client.deposits")
+                tr(ng-repeat="deposit in clientsDetail.client.deposits | orderBy : 'created_at' : true ")
                   td {{ deposit.created_at | date : 'd MMM yyyy' }}
                   td {{ deposit.amount | currency : '₡' : 0 }}

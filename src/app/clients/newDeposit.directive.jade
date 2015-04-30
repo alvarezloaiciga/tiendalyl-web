@@ -1,0 +1,13 @@
+alert(ng-repeat="alert in newDepositController.alerts" type="alert.type" close="newDepositController.closeAlert($index)")
+  {{alert.msg}}
+
+form(name="newDepositForm")
+  .row
+    .large-12.columns
+      label Monto
+        input(type="number" ng-model="newDepositController.newDeposit.amount" required)
+
+    hr
+
+    .large-12.columns
+      button.button.expand(ng-click="newDepositController.saveDeposit()" ng-disabled="newDepositForm.$invalid") Guardar
